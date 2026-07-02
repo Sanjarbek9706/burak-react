@@ -5,16 +5,11 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Divider from "../../components/divider";
 import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
-import { useParams } from "react-router-dom"; // @ts-ignore
-import { FreeMode, Navigation, Thumbs } from "swiper";
-// @ts-ignore
 import "swiper/css";
-// @ts-ignore
 import "swiper/css/free-mode";
-// @ts-ignore
 import "swiper/css/navigation";
-// @ts-ignore
 import "swiper/css/thumbs";
+import { FreeMode, Navigation, Thumbs } from "swiper";
 
 export default function ChosenProduct() {
   return (
