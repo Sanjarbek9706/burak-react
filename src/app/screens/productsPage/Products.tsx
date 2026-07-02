@@ -18,9 +18,29 @@ const products = [
   { productName: "Cutlet", imagePath: "/img/cutlet.webp" },
   { productName: "Kebab", imagePath: "/img/kebab.webp" },
   { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
+
 ];
 
 export default function Products() {
+  const newLocal = <div className={"brands-logo"}>
+    <Container className={"family-brands"}>
+      <Box className={"category-title"}>Our Family Brands</Box>
+      <Stack className={"brand-list"}>
+        <Box className={"review-box"}>
+          <img src={"/img/gurme.webp"} />
+        </Box>
+        <Box className={"review-box"}>
+          <img src={"/img/seafood.webp"} />
+        </Box>
+        <Box className={"review-box"}>
+          <img src={"/img/doner.webp"} />
+        </Box>
+        <Box className={"review-box"}>
+          <img src={"/img/sweets.webp"} />
+        </Box>
+      </Stack>
+    </Container>
+  </div>;
   return (
     <div className={"products"}>
       <Container>
@@ -156,25 +176,7 @@ export default function Products() {
         </Stack>
       </Container>
 
-      <div className={"brands-logo"}>
-        <Container className={"family-brands"}>
-          <Box className={"category-title"}>Our Family Brands</Box>
-          <Stack className={"brand-list"}>
-            <Box className={"review-box"}>
-              <img src={"/img/gurme.png"} />
-            </Box>
-            <Box className={"review-box"}>
-              <img src={"/img/seafood.png"} />
-            </Box>
-            <Box className={"review-box"}>
-              <img src={"/img/doner.png"} />
-            </Box>
-            <Box className={"review-box"}>
-              <img src={"/img/sweets.png"} />
-            </Box>
-          </Stack>
-        </Container>
-      </div>
+      {newLocal}
 
       <div className={"address"}>
         <Container>
