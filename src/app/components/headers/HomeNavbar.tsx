@@ -15,7 +15,7 @@ useEffect(() => {
 
     return () => {
     console.log("componentWillUnmount");
-    };
+    }
 
 }, [value]);
 
