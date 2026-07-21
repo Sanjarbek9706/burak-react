@@ -6,34 +6,49 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import Typography from "@mui/joy/Typography";
 import { CssVarsProvider } from "@mui/joy/styles";
 
-const activeUsers = [
-  { name: "Martin", imagePath: "/img/martin.webp" }, 
-  { name: "Justin", imagePath: "/img/justin.webp" },
-  { name: "Aven", imagePath: "/img/aven.webp" },
-  { name: "Nusret", imagePath: "/img/nusret.webp" }
-];
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveTopUsers} from "./selector";
+import { serverApi } from "../../../lib/config";
+import { Member } from "../../../lib/data/types/member";
+
+/** REDUX  SELECTOR **/
+const topUsersRetriever = createSelector(retrieveTopUsers, (topUsers) => ({
+    topUsers,
+}));
 
 export default function ActiveUsers() {
+  const { topUsers } = useSelector(topUsersRetriever);
   return (
-    <div className="active-users-frame">
+    <div className={"active-users-frame"}>
       <Container>
-        <Stack className="main">
-          <Box className="category-title">Active Users</Box>
-          <Stack className="cards-frame">
+        <Stack className={"main"}>
+          <Box className={"category-title"}>Active Users</Box>
+          <Stack className={"cards-frame"}>
             <CssVarsProvider>
-              {activeUsers.length !== 0 ? (
-                activeUsers.map((user, index) => (
-                  <Card key={index} variant="outlined" className={"card"}>
-                    <CardOverflow>
-                      <AspectRatio ratio="1">
-                        <img src={user.imagePath} alt={user.name} />
-                      </AspectRatio>
-                    </CardOverflow>
-                    <CardOverflow variant="soft" className={"user-detail"}>
-                      <Typography className={"name"}>{user.name}</Typography>
-                    </CardOverflow>
-                  </Card>
-                ))
+              {topUsers.length !== 0 ? (
+                topUsers.map((member: Member) => {
+                  const imagePath = `${serverApi}/${member.memberImage}`;
+                  // const imagePath = member.memberImage?.[0] || "/default-dish.png";
+                  return (
+                    <Card
+                      key={member._id}
+                      variant="outlined"
+                      className={"card"}
+                    >
+                      <CardOverflow>
+                        <AspectRatio ratio="1">
+                          <img src={imagePath} alt="" />
+                        </AspectRatio>
+                      </CardOverflow>
+                      <CardOverflow>
+                        <Typography className={"member-nickname"}>
+                          {member.memberNick}
+                        </Typography>
+                      </CardOverflow>
+                    </Card>
+                  );
+                })
               ) : (
                 <Box className="no-data">Active users not available</Box>
               )}
