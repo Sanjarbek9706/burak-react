@@ -36,7 +36,8 @@ export default function PopularDishes() {
           <Stack className="cards-frame">
             {popularDishes.length !== 0 ? (
             popularDishes.map((ele: Product) => {
-              const imagePath = `${serverApi}/${ele.productImages[0]}`;
+              // const imagePath = `${serverApi}/${ele.productImages[0]}`;
+              const imagePath = ele.productImages?.[0] || "/default-dish.png";
               return (
                 <CssVarsProvider key={ele._id}>
                   <Card className={"card"}>
