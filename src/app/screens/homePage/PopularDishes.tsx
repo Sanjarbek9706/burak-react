@@ -12,7 +12,7 @@ import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrievePopularDishes} from "./selector";
-import { Product } from "../../../lib/data/types/product";
+import { Product } from "../../../lib/types/product";
 import { serverApi } from "../../../lib/config";
 
 /** REDUX  SELECTOR **/
@@ -34,10 +34,21 @@ export default function PopularDishes() {
         <Stack className="popular-section">
           <Box className="category-title">Popular Dishes</Box>
           <Stack className="cards-frame">
-            {popularDishes.length !== 0 ? (
+           {popularDishes && popularDishes.length !== 0 ? (
             popularDishes.map((product: Product) => {
-              // const imagePath = `${serverApi}/${ele.productImages[0]}`;
-              const imagePath = product.productImages?.[0] || "/default-dish.png";
+              //  Noto'g'ri /Users/... yo'li kelsa, faqat "uploads/..." qismini ajratib olamiz:
+             const rawImage = product.productImages?.[0];
+             let imagePath = "/img/default-dish.png";
+
+              if (rawImage) {
+             const cleanedImage = rawImage.includes("uploads/")
+              ? rawImage.substring(rawImage.indexOf("uploads/"))
+              : rawImage;
+
+             imagePath = cleanedImage.startsWith("http")
+              ? cleanedImage
+              : `${serverApi}/${cleanedImage}`;
+              }
               return (
                 <CssVarsProvider key={product._id}>
                   <Card className={"card"}>

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ProductsPageState } from "../../../lib/data/types/screen";
+import { ProductsPageState } from "../../../lib/types/screen";
 
 
 const initialState: ProductsPageState = {

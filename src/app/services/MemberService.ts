@@ -1,7 +1,7 @@
 import axios from "axios";
 import { serverApi } from "../../lib/config";
-import { Product, ProductInquiry } from "../../lib/data/types/product";
-import { Member } from "../../lib/data/types/member";
+import { Product, ProductInquiry } from "../../lib/types/product";
+import { Member } from "../../lib/types/member";
 
 
 class MemberService {
