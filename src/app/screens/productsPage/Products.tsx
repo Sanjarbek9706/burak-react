@@ -9,6 +9,23 @@ import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector, Dispatch } from "@reduxjs/toolkit";
+import { setProducts } from "./slice";
+import { Product } from "../../../lib/data/types/product";
+import { retrieveProducts } from "./selector";
+
+
+/** REDUX SLICE SELECTOR **/
+const actionDispatch = (dispatch: Dispatch) => ({
+    setPopularDishes: (data: Product[]) => dispatch(setProducts(data)),
+});
+const productsRetriever = createSelector(
+    retrieveProducts,
+    (products) => ({ products })
+);
+
+
 const products = [
   { productName: "Cutlet", imagePath: "/img/cutlet.webp" },
   { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
@@ -20,6 +37,8 @@ const products = [
   { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
 
 ];
+
+
 
 export default function Products() {
   const newLocal = <div className={"brands-logo"}>
