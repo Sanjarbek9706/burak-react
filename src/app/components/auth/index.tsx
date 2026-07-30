@@ -48,7 +48,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
   const classes = useStyles();
   const [memberNick, setMemberNick] = useState<string>("");
   const [memberPhone, setMemberPhone] = useState<string>("");
-  const [memberPasword, setMemberPasword] = useState<string>("");
+  const [memberPassword, setMemberPassword] = useState<string>("");
   const {setAuthMember} = useGlobals();
   
   /** HANDLERS **/
@@ -61,7 +61,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
     setMemberPhone(e.target.value);
   };
    const handlePasword = (e: T) => {
-    setMemberPasword(e.target.value);
+    setMemberPassword(e.target.value);
   };
   const handlePasswordKeyDown = (e: T) => {
     if(e.key === "Enter" && signupOpen) {
@@ -74,13 +74,13 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
   const handleSignupRequest = async () => {
     try {
       // console.log("inputs:", memberNick, memberPhone, memberPasword)
-      const isFulfill = memberNick !== "" && memberPhone !== "" && memberPasword !== "";
+      const isFulfill = memberNick !== "" && memberPhone !== "" && memberPassword !== "";
       if(!isFulfill) throw new Error(Messages.error3)
         
         const signupInput: MemberInput = {
           memberNick: memberNick,
           memberPhone: memberPhone,
-          memberPassword: memberPasword,
+          memberPassword: memberPassword,
         };
 
         const member = new MemberService();
@@ -99,18 +99,19 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
 
   const handleLoginRequest = async () => {
     try {
-      const isFulfill = memberNick !== "" && memberPasword !== "";
+      const isFulfill = memberNick !== "" && memberPassword !== "";
       if(!isFulfill) throw new Error(Messages.error3)
         
         const loginInput: LoginInput = {
           memberNick: memberNick,
-          memberPassword: memberPasword,
+          memberPassword: memberPassword,
         };
 
         const member = new MemberService();
         const result = await member.login(loginInput);
-
-
+       
+      
+        setAuthMember(result);
         handleLoginClose();
     } catch (err) {
       console.log(err);
