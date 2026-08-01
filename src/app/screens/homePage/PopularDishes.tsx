@@ -15,7 +15,7 @@ import { retrievePopularDishes} from "./selector";
 import { Product } from "../../../lib/types/product";
 import { serverApi } from "../../../lib/config";
 
-/** REDUX  SELECTOR **/
+/** REDUX SLICE & SELECTOR **/
 const popularDishesRetriever = createSelector(
     retrievePopularDishes,
     (popularDishes) => ({ popularDishes })

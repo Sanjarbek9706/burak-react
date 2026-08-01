@@ -9,7 +9,7 @@ export interface OrderItemInput {
 }
 
 export interface OrderItem {
-    _id: String;
+    _id: string;
     itemQuantity: number;
     itemPrice: number;
     orderId: String;
@@ -19,7 +19,7 @@ export interface OrderItem {
 }
 
 export interface Order {
-    _id: String;
+    _id: string;
     orderTotal: number;
     orderDelivery: number;
     orderStatus: OrderStatus;
