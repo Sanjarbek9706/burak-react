@@ -19,6 +19,8 @@ const pausedOrderRetriever = createSelector(
 export default function PausedOrders() {
   const {pausedOrders} = useSelector(pausedOrderRetriever); 
 
+  /** HANDLERS **/
+
   return (
     <TabPanel value={"1"}>
       <Stack>
